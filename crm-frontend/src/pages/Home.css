@@ -1,0 +1,36 @@
+body {
+  font-family: Arial;
+  background: #f4f4f4;
+}
+
+.home-container {
+  text-align: center;
+  padding: 40px;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+.user-card {
+  width: 350px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+button {
+  padding: 10px 20px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #333;
+}

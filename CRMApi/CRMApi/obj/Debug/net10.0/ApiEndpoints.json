@@ -1,0 +1,38 @@
+[
+  {
+    "ContainingType": "CRMApi.Controllers.CustomerController",
+    "Method": "GetAll",
+    "RelativePath": "api/customer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CRMApi.Controllers.CustomerController",
+    "Method": "DbTest",
+    "RelativePath": "api/customer/dbtest",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CRMApi.Controllers.CustomerController",
+    "Method": "Save",
+    "RelativePath": "api/customer/save",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customer",
+        "Type": "Customer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
