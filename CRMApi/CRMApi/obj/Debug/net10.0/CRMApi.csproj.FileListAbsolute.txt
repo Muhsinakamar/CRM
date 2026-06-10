@@ -103,3 +103,4 @@ D:\CRM\CRMApi\CRMApi\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\CRM\CRMApi\CRMApi\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\CRM\CRMApi\CRMApi\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\CRM\CRMApi\CRMApi\obj\Debug\net10.0\CRMApi.MvcApplicationPartsAssemblyInfo.cs
+D:\CRM\CRMApi\CRMApi\obj\Debug\net10.0\CRMApi.sourcelink.json

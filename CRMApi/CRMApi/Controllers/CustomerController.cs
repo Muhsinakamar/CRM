@@ -72,36 +72,47 @@ namespace CRMApi.Controllers
         [HttpGet("latest")]
         public IActionResult GetLatest()
         {
-            Customer customer = null;
-
-            string connString = _configuration.GetConnectionString("DefaultConnection");
-
-            using (NpgsqlConnection con = new NpgsqlConnection(connString))
+            try
             {
-                con.Open();
+                string connString = _configuration.GetConnectionString("DefaultConnection");
+                Console.WriteLine("Connection String: " + connString);  // ✅ DEBUG
 
-                string query = "SELECT * FROM customers ORDER BY customer_id DESC LIMIT 1";
-
-                using (NpgsqlCommand cmd = new NpgsqlCommand(query, con))
-                using (NpgsqlDataReader dr = cmd.ExecuteReader())
+                using (NpgsqlConnection con = new NpgsqlConnection(connString))
                 {
-                    if (dr.Read())
+                    con.Open();
+                    Console.WriteLine("Database Connected!");  // ✅ DEBUG
+
+                    string query = "SELECT * FROM customers ORDER BY customer_id DESC LIMIT 1";
+
+                    using (NpgsqlCommand cmd = new NpgsqlCommand(query, con))
+                    using (NpgsqlDataReader dr = cmd.ExecuteReader())
                     {
-                        customer = new Customer
+                        if (dr.Read())
                         {
-                            CustomerId = Convert.ToInt32(dr["customer_id"]),
-                            CompanyName = dr["company_name"]?.ToString() ?? "",
-                            Address = dr["address"]?.ToString() ?? "",
-                            ContactPerson = dr["contact_person"]?.ToString() ?? "",
-                            ContactNumber = dr["contact_number"]?.ToString() ?? "",
-                            Email = dr["email"]?.ToString() ?? "",
-                            ServiceType = dr["service_type"]?.ToString() ?? ""
-                        };
+                            var customer = new Customer
+                            {
+                                CustomerId = Convert.ToInt32(dr["customer_id"]),
+                                CompanyName = dr["company_name"]?.ToString() ?? "",
+                                Address = dr["address"]?.ToString() ?? "",
+                                ContactPerson = dr["contact_person"]?.ToString() ?? "",
+                                ContactNumber = dr["contact_number"]?.ToString() ?? "",
+                                Email = dr["email"]?.ToString() ?? "",
+                                ServiceType = dr["service_type"]?.ToString() ?? ""
+                            };
+
+                            Console.WriteLine("Customer Found: " + customer.CompanyName);  // ✅ DEBUG
+                            return Ok(customer);
+                        }
                     }
                 }
-            }
 
-            return Ok(customer);
+                return Ok(null); // No customer found
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR: " + ex.Message);  // ✅ DEBUG
+                return BadRequest(ex.Message);
+            }
         }
     }
-}
+    }

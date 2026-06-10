@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "../App.css";
 
 function CustomerForm() {
-
-  const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
     companyName: "",
     address: "",
@@ -15,6 +13,8 @@ function CustomerForm() {
     serviceType: ""
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -22,32 +22,88 @@ function CustomerForm() {
     });
   };
 
-  const saveCustomer = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    try {
-      await axios.post("http://localhost:5162/api/customer/save", formData);
-      alert("Customer Saved Successfully");
-      navigate("/home");
-    } catch (err) {
-      console.error(err);
-      alert("Error saving customer");
-    }
+    axios.post("http://localhost:5162/api/customer/save", formData)
+      .then((res) => {
+        alert(res.data);
+        navigate("/home");
+      })
+      .catch((err) => {
+        alert("Error: " + err.message);
+      });
   };
 
   return (
-    <form onSubmit={saveCustomer} style={{ padding: "20px" }}>
-      <h2>Customer Registration</h2>
+    <div className="container">
+      <h1>Customer Registration</h1>
+      <h2>Register Your Company</h2>
 
-      <input name="companyName" placeholder="Company Name" onChange={handleChange} /><br /><br />
-      <input name="address" placeholder="Address" onChange={handleChange} /><br /><br />
-      <input name="contactPerson" placeholder="Contact Person" onChange={handleChange} /><br /><br />
-      <input name="contactNumber" placeholder="Contact Number" onChange={handleChange} /><br /><br />
-      <input name="email" placeholder="Email" onChange={handleChange} /><br /><br />
-      <input name="serviceType" placeholder="Service Type" onChange={handleChange} /><br /><br />
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Company Name</label>
+          <input
+            name="companyName"
+            placeholder="Enter company name"
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-      <button type="submit">Register</button>
-    </form>
+        <div className="form-group">
+          <label>Address</label>
+          <input
+            name="address"
+            placeholder="Enter address"
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Contact Person</label>
+          <input
+            name="contactPerson"
+            placeholder="Enter contact person name"
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Contact Number</label>
+          <input
+            name="contactNumber"
+            placeholder="Enter phone number"
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Email</label>
+          <input
+            name="email"
+            type="email"
+            placeholder="Enter email"
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Service Type</label>
+          <input
+            name="serviceType"
+            placeholder="Enter service type"
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <button type="submit">Register Customer</button>
+      </form>
+    </div>
   );
 }
 

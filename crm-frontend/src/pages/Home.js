@@ -1,26 +1,32 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Home() {
   const [customer, setCustomer] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-useEffect(() => {
-  axios.get("http://localhost:5162/api/customer/latest")
-    .then(res => {
-      console.log("API RESPONSE:", res.data);   // 👈 MUST ADD
-      setCustomer(res.data);
-    })
-    .catch(err => {
-      console.error("ERROR:", err);
-    });
-}, []);
+  useEffect(() => {
+    // ✅ FETCH LATEST CUSTOMER FROM DATABASE
+    axios.get("http://localhost:5162/api/customer/latest")
+      .then((res) => {
+        setCustomer(res.data); // Assuming API returns the customer object
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching customer:", err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2>Latest Registered Customer</h2>
+      <h2>Registered Customer Details</h2>
 
+      {/* ✅ TABLE DISPLAYING THE FETCHED CUSTOMER */}
       {customer ? (
         <table border="1" cellPadding="10">
           <thead>
@@ -43,7 +49,7 @@ useEffect(() => {
           </tbody>
         </table>
       ) : (
-        <p>No customer found</p>
+        <p>No customer data found.</p>
       )}
 
       <br />

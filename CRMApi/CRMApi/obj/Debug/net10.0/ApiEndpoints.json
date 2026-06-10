@@ -1,8 +1,8 @@
 [
   {
     "ContainingType": "CRMApi.Controllers.CustomerController",
-    "Method": "GetAll",
-    "RelativePath": "api/customer",
+    "Method": "DbTest",
+    "RelativePath": "api/customer/dbtest",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -11,8 +11,8 @@
   },
   {
     "ContainingType": "CRMApi.Controllers.CustomerController",
-    "Method": "DbTest",
-    "RelativePath": "api/customer/dbtest",
+    "Method": "GetLatest",
+    "RelativePath": "api/customer/latest",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

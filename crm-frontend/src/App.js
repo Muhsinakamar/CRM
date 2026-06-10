@@ -4,15 +4,16 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import InvoiceForm from "./pages/InvoiceForm";
+import "./App.css";
 
 function Home() {
-    const [customers, setCustomers] = useState([]);
+  const [customer, setCustomer] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:5162/api/customer")
+    axios.get("http://localhost:5162/api/customer/latest")
       .then(res => {
-        setCustomers(res.data);
+        setCustomer(res.data);
       })
       .catch(err => {
         console.error(err);
@@ -20,46 +21,48 @@ function Home() {
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Customer List</h2>
+    <div className="container">
+      {/* Welcome Banner */}
+      {customer && (
+        <div className="welcome-message">
+          <h1>Welcome {customer.companyName} 🎉</h1>
+        </div>
+      )}
 
-      {/* ✅ TABLE */}
-      <table border="1" cellPadding="10">
-        <thead>
-          <tr>
-            <th>Company</th>
-            <th>Contact Person</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Service</th>
-          </tr>
-        </thead>
-        <tbody>
-          {customers.map((c, index) => (
-            <tr key={index}>
-              <td>{c.companyName}</td>
-              <td>{c.contactPerson}</td>
-              <td>{c.contactNumber}</td>
-              <td>{c.email}</td>
-              <td>{c.serviceType}</td>
+      <h2>Registered Customer Details</h2>
+
+      {customer ? (
+        <table>
+          <tbody>
+            <tr>
+              <th>Company</th>
+              <td>{customer.companyName}</td>
             </tr>
-          ))}
-        </tbody>
-      </table>
+            <tr>
+              <th>Contact Person</th>
+              <td>{customer.contactPerson}</td>
+            </tr>
+            <tr>
+              <th>Phone</th>
+              <td>{customer.contactNumber}</td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td>{customer.email}</td>
+            </tr>
+            <tr>
+              <th>Service</th>
+              <td>{customer.serviceType}</td>
+            </tr>
+          </tbody>
+        </table>
+      ) : (
+        <p>No customer found. Please register first.</p>
+      )}
 
-      <br />
-
-      {/* ✅ CREATE INVOICE BUTTON */}
       <button onClick={() => navigate("/invoice")}>
         Create Invoice
       </button>
-    </div>
-  );
-  return (
-    <div>
-      <h1>Home Page</h1>
-      <h2>Welcome Customer</h2>
-      <p>You have Registered Successfully 🎉</p>
     </div>
   );
 }
