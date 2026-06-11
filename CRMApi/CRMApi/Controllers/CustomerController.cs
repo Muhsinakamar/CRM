@@ -67,7 +67,47 @@ namespace CRMApi.Controllers
                 return BadRequest("ERROR: " + ex.Message);
             }
         }
+        // ✅ GET ALL CUSTOMERS
+        [HttpGet("all")]
+        public IActionResult GetAll()
+        {
+            try
+            {
+                string connString = _configuration.GetConnectionString("DefaultConnection");
+                List<Customer> customers = new List<Customer>();
 
+                using (NpgsqlConnection con = new NpgsqlConnection(connString))
+                {
+                    con.Open();
+
+                    string query = "SELECT * FROM customers ORDER BY customer_id DESC";
+
+                    using (NpgsqlCommand cmd = new NpgsqlCommand(query, con))
+                    using (NpgsqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            customers.Add(new Customer
+                            {
+                                CustomerId = Convert.ToInt32(dr["customer_id"]),
+                                CompanyName = dr["company_name"]?.ToString() ?? "",
+                                Address = dr["address"]?.ToString() ?? "",
+                                ContactPerson = dr["contact_person"]?.ToString() ?? "",
+                                ContactNumber = dr["contact_number"]?.ToString() ?? "",
+                                Email = dr["email"]?.ToString() ?? "",
+                                ServiceType = dr["service_type"]?.ToString() ?? ""
+                            });
+                        }
+                    }
+                }
+
+                return Ok(customers);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("ERROR: " + ex.Message);
+            }
+        }
         // ✅ GET ALL CUSTOMERS
         [HttpGet("latest")]
         public IActionResult GetLatest()
