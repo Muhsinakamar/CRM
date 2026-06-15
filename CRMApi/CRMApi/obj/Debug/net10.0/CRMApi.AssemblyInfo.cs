@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CRMApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+97ca2111ae668ff41bf2fa082565391309d69497")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34b8ca7c5d09d4734b6a8bbd956ce7c2a76121e2")]
 [assembly: System.Reflection.AssemblyProductAttribute("CRMApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CRMApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

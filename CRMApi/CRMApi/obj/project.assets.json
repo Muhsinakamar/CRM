@@ -490,7 +490,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Gaming\\.nuget\\packages\\": {},
+    "C:\\Users\\Mujeeb Ahamad\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
@@ -499,14 +499,14 @@
       "projectUniqueName": "D:\\CRM\\CRMApi\\CRMApi\\CRMApi.csproj",
       "projectName": "CRMApi",
       "projectPath": "D:\\CRM\\CRMApi\\CRMApi\\CRMApi.csproj",
-      "packagesPath": "C:\\Users\\Gaming\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\Mujeeb Ahamad\\.nuget\\packages\\",
       "outputPath": "D:\\CRM\\CRMApi\\CRMApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Gaming\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Mujeeb Ahamad\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

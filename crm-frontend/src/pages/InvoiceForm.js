@@ -15,7 +15,7 @@ function InvoiceForm() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:5162/api/customer/all")
+    axios.get("http://localhost:5163/api/customer/all")
       .then((res) => setCustomers(res.data))
       .catch((err) => console.error(err));
   }, []);

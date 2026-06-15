@@ -11,7 +11,7 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:5162/api/customer/latest")
+    axios.get("http://localhost:5163/api/customer/latest")
       .then(res => {
         setCustomer(res.data);
       })

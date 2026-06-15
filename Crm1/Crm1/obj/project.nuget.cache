@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "GjCf+POaPgY=",
+  "success": true,
+  "projectFilePath": "D:\\CRM\\Crm1\\Crm1\\Crm1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Mujeeb Ahamad\\.nuget\\packages\\npgsql\\10.0.3\\npgsql.10.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

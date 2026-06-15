@@ -22,17 +22,21 @@ function CustomerForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Sending data:", formData); // Debug
+    
     axios.post("http://localhost:5162/api/customer/save", formData)
       .then((res) => {
-        alert(res.data);
+        console.log("Success:", res.data);
+        alert(res.data.message || "Customer Saved Successfully");
         navigate("/home");
       })
       .catch((err) => {
-        alert("Error: " + err.message);
+        console.error("Error:", err);
+        alert("Error: " + (err.response?.data || err.message));
       });
-  };
+};
 
   return (
     <div className="container">

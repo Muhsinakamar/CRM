@@ -9,7 +9,7 @@ function Home() {
 
   useEffect(() => {
     // ✅ FETCH LATEST CUSTOMER FROM DATABASE
-    axios.get("http://localhost:5162/api/customer/latest")
+    axios.get("http://localhost:5163/api/customer/latest")
       .then((res) => {
         setCustomer(res.data); // Assuming API returns the customer object
         setLoading(false);
